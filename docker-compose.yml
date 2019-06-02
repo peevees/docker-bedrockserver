@@ -14,8 +14,10 @@ services:
     volumes:
       # temporarily we are mapping the worlds folder to an import folder because when
       # mounting this volume in Windows at least the bedrock server crashes.
-      - ~/data/minecraft/worlds:/home/bedrock/bedrock_server/import/worlds
+      # as this is running on a linux hostdisregard previous 
+      #- ~/data/minecraft/worlds:/home/bedrock/bedrock_server/import/worlds
       - ~/data/minecraft/config:/home/bedrock/bedrock_server/config
+      - ~/data/minecraft/worlds:/home/bedrock/bedrock_server/worlds
       
     # override the default entrypoint to include access to a bash terminal for debugging.
     entrypoint: bash -c "/home/bedrock/startup.sh && /bin/bash"

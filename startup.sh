@@ -34,11 +34,13 @@ copy_config server.properties
 copy_config ops.json
 copy_config whitelist.json
 copy_config permissions.json
+copy_config Debug_Log.txt
 
 # since (for Windows at least) we cannot currently mount the worlds
 # directory directly, we need to copy the world data over at startup.
 # copy recursively without overwriting existing files.
-cp -r -n import/worlds/* worlds/
+#we are running on a linux host so we dont need to
+#cp -r -n import/worlds/* worlds/
 
 if [ -f "bedrock_server" ]; then
    echo "Executing server"
@@ -48,4 +50,5 @@ else
 fi
 
 # let's copy the resulting world data back out
-cp -r -u worlds/* import/worlds/
+#we are running on a linux host so we dont need to
+#cp -r -u worlds/* import/worlds/
