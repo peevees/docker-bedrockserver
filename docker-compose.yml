@@ -2,19 +2,20 @@ version: '3'
 
 services:
   bedrock_server:
-    image: bedrock_server:1.11.4.2
+    image: bedrock_server:latest
     build: .
     container_name: bedrock_server
     ports: 
       - 19132:19132/udp
       - 19133:19133/udp
+    restart: unless-stopped
     stdin_open: true
     tty: true
     volumes:
       # temporarily we are mapping the worlds folder to an import folder because when
       # mounting this volume in Windows at least the bedrock server crashes.
-      - ./data/worlds:/home/bedrock/bedrock_server/import/worlds
-      - ./data/config:/home/bedrock/bedrock_server/config
+      - ~/data/minecraft/worlds:/home/bedrock/bedrock_server/import/worlds
+      - ~/data/minecraft/config:/home/bedrock/bedrock_server/config
       
     # override the default entrypoint to include access to a bash terminal for debugging.
     entrypoint: bash -c "/home/bedrock/startup.sh && /bin/bash"
